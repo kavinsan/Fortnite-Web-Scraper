@@ -1,0 +1,23 @@
+Author: Kavinsan Thavanesan
+
+This script makes uses of the python selenium webscraper library to scrape data
+from the fortnitetracker website. 
+
+Why did i create this script?
+    Fortnite tracker provides an API to use their database however they do not
+    have all the stats data that one might need/want. Also their api retrieves
+    data that is inaccurate compared to the data presented on their website.
+    
+    I also use this script for my discord bot (written in javascript)
+    
+How to use this script?
+    python scraper.py <platform> <username>
+    
+        -> platform: pc, psn, xbl
+        -> username: A valid username for fortnite
+        
+Output?
+    When successful the script should prompt "done", otherwise "error" if unsuccessful.
+    data.json file should be created in the same directory
+        -> Contatains data for solo, duo, squad in the respected order
+        

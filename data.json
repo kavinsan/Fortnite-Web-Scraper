@@ -1,0 +1,44 @@
+{
+    "data": 
+    [
+	{
+	    "trnRating": "1,165 SCOUT",
+	    "rank": "#14,867,649",
+	    "wins": "0",
+	    "winPercent": "0.00",
+	    "top10": "11",
+	    "top25": "37",
+	    "kills": "27",
+	    "kd": "0.30",
+	    "killsPerMatch": "0.30",
+	    "score": "12,982",
+	    "scorePerMatch": "145.87"
+	},
+	{
+	    "trnRating": "1,174 SCOUT",
+	    "rank": "#13,274,325",
+	    "wins": "1",
+	    "winPercent": "2.90",
+	    "top5": "4",
+	    "top12": "4",
+	    "kills": "10",
+	    "kd": "0.30",
+	    "killsPerMatch": "0.29",
+	    "score": "4,413",
+	    "scorePerMatch": "129.79"
+	},
+	{
+	    "trnRating": "1,142 SCOUT",
+	    "rank": "#14,151,362",
+	    "wins": "9",
+	    "winPercent": "5.90",
+	    "top3": "28",
+	    "top6": "47",
+	    "kills": "45",
+	    "kd": "0.31",
+	    "killsPerMatch": "0.29",
+	    "score": "32,599",
+	    "scorePerMatch": "213.07"
+	}
+    ]
+}
