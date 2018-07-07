@@ -1,7 +1,7 @@
 import time;
 from selenium import webdriver;
 import sys;
-
+ 
 def printData(data):
     
     for stats in data:
@@ -13,7 +13,10 @@ def printData(data):
         message = name + ": " + value
         print(message)
 
-def extract(data):
+def extract(data, matches):
+    
+    matchValue = matches.pop(0)
+    matches.reverse()
     
     header = "{"
     footer = "}"
@@ -23,6 +26,11 @@ def extract(data):
     
     for type in data:
         dataBody += "\t{\n"
+        
+        matchValue = matches.pop()
+        dataBody = dataBody + "\t    \"" + "matches" + "\": \"" + matchValue + "\",\n"
+        
+        
         for stats in type:
             
             name = stats.find_element_by_xpath('.//div[@class=\"trn-defstat__name\"]').text.lower().replace("/","").replace("%","Percent")
@@ -35,7 +43,7 @@ def extract(data):
         dataBody = dataBody[:-2] + dataEnd
         
     dataBody = dataBody[:-2] + "\n    ]\n"  + footer
-    create(dataBody)
+    return dataBody;
 
 def create(data):
     f = open("data.json", "w+") 
@@ -49,15 +57,16 @@ def scrape(url):
         return print("User does not exist")
         sys.exit(0)
     
-    #Get the number of matches for solo, duo, squads and total
+    #Get the number of matches for total, solo, duo, squads
     matchesElement = driver.find_elements_by_class_name("trn-card__header-subline");
         
     keys = ['all','solo','duo','squad']
-    matches = {}
+    matchData = []
     
     for i in range(len(keys)):
-        matches[keys[i]] = matchesElement[i].text.split()[0]
+        matchData.append(matchesElement[i].text.split()[0])
     
+
     data = driver.find_elements_by_class_name("trn-defstat");
     
     #overall = data[0:7]; #simple data
@@ -65,10 +74,11 @@ def scrape(url):
     duo = data[18:29]
     squad = data[29:]
     
-    totalData = [solo,duo,squad]
-    extract(totalData)
-    #time.sleep(8)
+    statsData = [solo,duo,squad]
+    data = extract(statsData, matchData)
+    time.sleep(3)
     driver.quit();
+    create(data)
     
 def validate(platform):
     
@@ -93,13 +103,13 @@ def arguments():
     return True;
     
 def main():
-    
+
     if(not arguments()):
         sys.exit(0);
 
     platform = sys.argv[1]
     username = sys.argv[2]
-    
+
     url = "https://fortnitetracker.com/profile/" + platform + "/" + username
     
     try:
